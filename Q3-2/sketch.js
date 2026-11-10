@@ -26,18 +26,34 @@ function draw(){
 
   // BLANK[1] キャラクターの左右移動
 if(keyIsDown(LEFT_ARROW)){
-  vx -= 1;
+  if (keyIsDown(SHIFT)){
+    vx -= 1;}
+    else{
+      vx = -1;
+    }
 }
 
 if(keyIsDown(RIGHT_ARROW)){
-  vx += 1;
+  if (keyIsDown(SHIFT)){
+    vx += 1;}
+    else{
+      vx = 1;
+    }
+}
+  
+// BLANK[2] 重力とジャンプ
+vy += g; // 重力を加える
+if(y >= groundY - size /  2){
+  vy = 0
+} 
+if(keyIsDown(UP_ARROW) && y >= groundY - size / 2){
+  vy = -50; // ジャンプの速度
 }
 
-// BLANK[2] 重力とジャンプ
 
   // 速くなりすぎないように制限
   vx = constrain(vx, -20, 20);
-  vy = constrain(vy, -20, 20);
+  vy = constrain(vy, -50, 50);
 
   // 位置を更新
   x += vx;
