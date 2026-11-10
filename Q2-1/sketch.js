@@ -1,6 +1,6 @@
 function setup(){
   createCanvas(100, 100);
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 10; i++){//i=i+1
     let size = (i + 1) * 10;
     noFill();
     if(i < 5){

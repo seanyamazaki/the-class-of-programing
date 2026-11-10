@@ -13,13 +13,14 @@ function setup() {
       } else {
         fill(120);
       }
-     
+   
       rect(size * i, size * j, size, size);  
-
+       
       if( (i + j) % 2 == 1 && j < 3 ){
           fill(color(255, 0, 0));
          ellipse(size * i + size/2, size * j + size/2, size, size);
       }
+      
         if( (i + j) % 2 == 1 && j >= 5){
           fill(color(0));
         ellipse(size * i + size/2, size * j + size/2, size, size);
