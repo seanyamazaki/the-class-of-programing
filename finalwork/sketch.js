@@ -15,7 +15,7 @@ function setup(){
   vx = 0;
   vy = 0;
   kx = width / 2;
-  kvx = 0; 
+  kvx = 0;
 }
 
 function windowResized(){
@@ -31,11 +31,23 @@ function draw(){
   fill(64, 192, 64);
   rect(0, groundY, width, height - groundY);
 
+  // ネットを描く
+  stroke(255);
+  strokeWeight(1);
+  for(let i = 0; i <= 20; i++){
+    let nx = width * 0.3 + width * 0.4 * i / 20;
+    line(nx, height * 0.1, nx, groundY); // たての線
+  }
+  for(let i = 0; i <= 10; i++){
+    let ny = height * 0.1 + (groundY - height * 0.1) * i / 10;
+    line(width * 0.3, ny, width * 0.7, ny); // よこの線
+  }
+
   // ゴールを描く
   noFill();
   stroke(255);
   strokeWeight(6);
-  rect(width * 0.2, height * 0.1, width * 0.6, groundY - height * 0.1);
+  rect(width * 0.3, height * 0.1, width * 0.4, groundY - height * 0.1);
   noStroke();
 
   // シュート（止まっているときだけ）
@@ -52,7 +64,9 @@ function draw(){
     }
   }
 
-
+  // 速くなりすぎないように制限
+  vx = constrain(vx, -20, 20);
+  vy = constrain(vy, -50, 50);
 
   // 位置を更新
   x += vx;
