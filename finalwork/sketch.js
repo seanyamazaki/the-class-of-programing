@@ -15,7 +15,7 @@ function setup(){
   vx = 0;
   vy = 0;
   kx = width / 2;
-  kvx = 0;
+  kvx = 0; 
 }
 
 function windowResized(){
