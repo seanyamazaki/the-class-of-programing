@@ -5,7 +5,7 @@ function setup(){
 
   // 配列をランダムに初期化する
   const scores = [];
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 10; i++){// 配列の長さは10
     scores[i] = random(60, 100); // 60以上100未満のランダムな数を代入
   }
   console.log(scores);
@@ -19,15 +19,22 @@ function setup(){
 
   // ここから平均・最大・最小を求めます
   let average, largest, smallest;
-  // BLANK[1]　平均値（ヒント average = 合計 / 配列の長さ）
 
-  largest = 0;
+  // BLANK[1]　平均値（ヒント average = 合計 / 配列の長さ）
+  average = sum / scores.length;
+
+ largest = 0;
   for(let i = 0; i < scores.length; i++){
-    // BLANK[2]　ヒント：今までの最大値 largest と scores[i] を比較する
+       if(scores[i] > largest){
+      largest = scores[i];
+    }// BLANK[2]　ヒント：今までの最大値 largest と scores[i] を比較する
   }
 
   smallest = 100;
   for(let i = 0; i < scores.length; i++){
+    if(scores[i] < smallest){
+      smallest = scores[i];
+    }
     // BLANK[3]　ヒント：最小値とだいたい同じ
   }
 
@@ -40,10 +47,19 @@ function setup(){
   for(let i = 0; i < scores.length; i++){
     const dx = width / scores.length;
     const h = height * scores[i] / 100;
+
     // BLANK[4] 最大値・最小値の色を変えましょう
+    if(scores[i] == largest){ fill(255, 0, 0); }
+    else if(scores[i] == smallest){ fill(0, 0, 255); }
+    else{ fill(125); }
+
     rect(i * dx + 2, height - h, dx - 4, h);
     fill(0);
   }
 
   // BLANK[5] 平均点の線を引きます
+  const ay = height - height * average / 100;// 平均点のy座標
+  stroke(0, 255, 0);
+  line(0, ay, width, ay);
+
 }
